@@ -107,6 +107,7 @@ export function UrlCard({
           rel="noopener noreferrer"
           className="truncate hover:text-brand-600 dark:hover:text-brand-300 transition-colors"
           title={url.longUrl}
+          aria-label={`Open destination URL ${url.longUrl} in a new tab`}
         >
           {truncate(url.longUrl, 42)}
         </a>
@@ -115,9 +116,7 @@ export function UrlCard({
 
       {/* Metadata Row: Date & Clicks */}
       <div className="flex items-center justify-between text-xs pt-2.5 border-t border-slate-100 dark:border-white/[0.06] text-slate-500 dark:text-slate-400 font-medium">
-        <div>
-          <span>{formatDate(url.createdAt)}</span>
-        </div>
+        <time dateTime={url.createdAt || undefined}>{formatDate(url.createdAt)}</time>
         <Link
           to={`/analytics/${url.id}`}
           aria-label={`View analytics for ${url.title || url.code}: ${url.clicks || 0} ${
