@@ -40,6 +40,7 @@ export function Button({
     <button
       type={type}
       disabled={disabled || isLoading}
+      aria-busy={isLoading}
       onClick={onClick}
       className={`${baseStyles} ${variants[variant] || variants.primary} ${
         sizes[size] || sizes.md
@@ -47,9 +48,9 @@ export function Button({
       {...props}
     >
       {isLoading ? (
-        <Loader2 className="w-4 h-4 animate-spin text-current" />
+        <Loader2 aria-hidden="true" className="w-4 h-4 animate-spin text-current" />
       ) : Icon ? (
-        <Icon className="w-4 h-4 shrink-0" />
+        <Icon aria-hidden="true" className="w-4 h-4 shrink-0" />
       ) : null}
       {children}
     </button>
