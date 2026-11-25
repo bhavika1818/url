@@ -38,14 +38,13 @@ export function UrlCard({
   };
 
   return (
-    <div
+    <article
       className={`saas-card p-3.5 sm:p-4 transition-all duration-200 ${
         isSelected
           ? 'ring-2 ring-brand-500/40 bg-brand-50/30 dark:bg-brand-950/20'
           : ''
       }`}
     >
-      {/* Top Header: Checkbox, Title/Alias & Status Badge */}
       <div className="flex items-start justify-between gap-2.5 mb-2">
         <div className="flex items-center gap-2 min-w-0">
           <input
@@ -53,17 +52,17 @@ export function UrlCard({
             checked={isSelected}
             onChange={() => onSelectToggle(url.id)}
             className="rounded border-slate-300 dark:border-white/[0.15] bg-white dark:bg-black/60 text-brand-600 focus:ring-brand-500 cursor-pointer shrink-0"
-            aria-label={`Select link ${url.code}`}
+            aria-label={`Select link ${url.title || url.code}`}
           />
           <div className="flex items-center gap-1.5 flex-wrap min-w-0">
             {url.title ? (
-              <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
+              <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">
                 {url.title}
-              </span>
+              </h3>
             ) : (
-              <span className="text-xs font-mono font-medium text-slate-500 dark:text-slate-400">
+              <h3 className="text-xs font-mono font-medium text-slate-500 dark:text-slate-400">
                 /{url.code}
-              </span>
+              </h3>
             )}
             {url.isPasswordProtected && (
               <span title="Password Protected" className="text-amber-500 dark:text-amber-400 shrink-0">
@@ -121,23 +120,38 @@ export function UrlCard({
         </div>
         <Link
           to={`/analytics/${url.id}`}
+          aria-label={`View analytics for ${url.title || url.code}: ${url.clicks || 0} ${
+            (url.clicks || 0) === 1 ? 'click' : 'clicks'
+          }`}
           className="flex items-center gap-1 font-bold text-brand-600 dark:text-brand-400 hover:text-brand-500 dark:hover:text-brand-300 transition-colors"
         >
           <BarChart2 className="w-3.5 h-3.5" />
-          <span>{url.clicks || 0} clicks</span>
+          <span>
+            {url.clicks || 0} {(url.clicks || 0) === 1 ? 'click' : 'clicks'}
+          </span>
         </Link>
       </div>
 
-      {/* Bottom Actions: QR Code, Test Link, Active Toggle, Edit, Delete */}
       <div className="flex items-center justify-between gap-1 mt-3 pt-2.5 border-t border-slate-100 dark:border-white/[0.06]">
         <div className="flex items-center gap-1">
-          <Button size="xs" variant="secondary" onClick={() => onOpenQr(url)} icon={QrCode}>
+          <Button
+            size="xs"
+            variant="secondary"
+            onClick={() => onOpenQr(url)}
+            icon={QrCode}
+            aria-label={`Show QR code for ${url.title || url.code}`}
+          >
             QR Code
           </Button>
-          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-            <Button size="xs" variant="ghost" title="Open short URL in a new tab">
-              <ExternalLink className="w-3.5 h-3.5" />
-            </Button>
+          <a
+            href={shortUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${shortUrl} in a new tab`}
+            title="Open short URL in a new tab"
+            className="inline-flex items-center justify-center rounded-lg px-2.5 py-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.06] transition-all focus:outline-none focus:ring-2 focus:ring-brand-500/50"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
 
@@ -147,11 +161,20 @@ export function UrlCard({
             variant="ghost"
             onClick={() => onToggleActive(url)}
             title={url.isActive ? 'Disable Link' : 'Enable Link'}
+            aria-label={`${url.isActive ? 'Disable' : 'Enable'} link ${
+              url.title || url.code
+            }`}
             className={url.isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}
           >
             <Power className="w-3.5 h-3.5" />
           </Button>
-          <Button size="xs" variant="ghost" onClick={() => onOpenEdit(url)} title="Edit">
+          <Button
+            size="xs"
+            variant="ghost"
+            onClick={() => onOpenEdit(url)}
+            title="Edit"
+            aria-label={`Edit link ${url.title || url.code}`}
+          >
             <Edit2 className="w-3.5 h-3.5" />
           </Button>
           <Button
@@ -160,11 +183,12 @@ export function UrlCard({
             onClick={() => onDelete(url.id)}
             className="text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/30"
             title="Delete"
+            aria-label={`Delete link ${url.title || url.code}`}
           >
             <Trash2 className="w-3.5 h-3.5" />
           </Button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
