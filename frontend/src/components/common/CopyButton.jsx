@@ -50,7 +50,7 @@ export function CopyButton({
   };
 
   const baseStyles =
-    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-150 select-none active:scale-[0.98] shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ring-offset-white dark:ring-offset-slate-950';
+    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-150 select-none active:scale-[0.98] shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ring-offset-white dark:ring-offset-slate-950 disabled:opacity-50 disabled:pointer-events-none';
 
   const sizeStyles = {
     xs: iconOnly || !showLabel ? 'p-1.5' : 'text-xs px-2.5 py-1 gap-1.5',
@@ -85,19 +85,30 @@ export function CopyButton({
     <button
       type="button"
       onClick={handleCopy}
+      disabled={!text}
       className={`${baseStyles} ${getVariantStyles()} ${sizeStyles[size] || sizeStyles.xs} ${className}`}
       title={copied ? 'Copied to clipboard!' : 'Copy short URL'}
       aria-label={copied ? 'Copied to clipboard' : 'Copy short URL'}
     >
       {copied ? (
         <>
-          <Check className={`${iconSizes[size] || 'w-3.5 h-3.5'} text-emerald-600 dark:text-emerald-400 shrink-0`} />
-          {!iconOnly && showLabel && <span className="font-semibold">{copiedLabel}</span>}
+          <Check
+            aria-hidden="true"
+            className={`${iconSizes[size] || 'w-3.5 h-3.5'} text-emerald-600 dark:text-emerald-400 shrink-0`}
+          />
+          {!iconOnly && showLabel && (
+            <span className="font-semibold" aria-live="polite">
+              {copiedLabel}
+            </span>
+          )}
         </>
       ) : (
         <>
-          <Copy className={`${iconSizes[size] || 'w-3.5 h-3.5'} text-current shrink-0`} />
-          {!iconOnly && showLabel && <span>{label}</span>}
+          <Copy
+            aria-hidden="true"
+            className={`${iconSizes[size] || 'w-3.5 h-3.5'} text-current shrink-0`}
+          />
+          {!iconOnly && showLabel && <span aria-live="polite">{label}</span>}
         </>
       )}
     </button>
