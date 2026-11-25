@@ -30,7 +30,7 @@ export function Badge({ children, variant = 'neutral', size = 'sm', className = 
         variants[variant] || variants.neutral
       } ${sizes[size] || sizes.sm} ${className}`}
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
+      <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
       {children}
     </span>
   );
