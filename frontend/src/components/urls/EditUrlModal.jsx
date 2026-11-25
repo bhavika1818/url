@@ -143,6 +143,7 @@ export function EditUrlModal({ isOpen, onClose, urlItem, onSaved }) {
           {!formData.removePassword && (
             <Input
               type="password"
+              label={urlItem.isPasswordProtected ? 'New password' : 'Password'}
               value={formData.newPassword}
               onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
               placeholder={urlItem.isPasswordProtected ? 'Set new password (leave blank to keep current)' : 'Set password to protect this link'}
