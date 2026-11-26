@@ -32,7 +32,6 @@ export function LoginPage() {
 
   const from = location.state?.from?.pathname || '/';
 
-  // Redirect if already logged in
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate(from, { replace: true });
