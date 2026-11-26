@@ -1,6 +1,6 @@
 import { authService } from '../services/authService.js';
 import { setAuthCookies, clearAuthCookies, extractAuthTokens } from '../utils/cookieHelper.js';
-
+// Authentication controller for handling user registration, login, session management, and account operations
 export const authController = {
   /**
    * User Registration
