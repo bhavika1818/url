@@ -3,7 +3,7 @@ import { config, validateConfig, maskMongoUri } from './config/env.js';
 import { urlRepository } from './repositories/urlRepository.js';
 import { clickRepository } from './repositories/clickRepository.js';
 import { connectDatabase, disconnectDatabase, isDatabaseConnected } from './config/database.js';
-
+// Bootstrap the backend server
 async function bootstrap() {
   try {
     validateConfig();
