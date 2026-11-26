@@ -40,7 +40,6 @@ export function RegisterPage() {
   const hasNumber = /[0-9]/.test(password);
   const passwordsMatch = password && password === confirmPassword;
 
-  // Redirect if already logged in
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate('/', { replace: true });
