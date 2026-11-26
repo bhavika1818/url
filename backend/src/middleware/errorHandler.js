@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-
+// Centralized error handling middleware for Express.js
 export function errorHandler(err, req, res, next) {
   // Handle Zod validation errors
   if (err instanceof ZodError) {
