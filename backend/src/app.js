@@ -13,7 +13,7 @@ import analyticsRoutes from './routes/analyticsRoutes.js';
 import redirectRoutes from './routes/redirectRoutes.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
 import { errorHandler } from './middleware/errorHandler.js';
-
+// Determine the directory of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const frontendDist = path.resolve(__dirname, '../../frontend/dist');
