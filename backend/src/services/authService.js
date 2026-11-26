@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import { userRepository } from '../repositories/userRepository.js';
 import { config } from '../config/env.js';
 import { anonymizeIp } from '../utils/deviceParser.js';
-
+// Authentication service for handling user registration, login, and token management
 export class AuthService {
   constructor(userRepo = userRepository) {
     this.userRepo = userRepo;
