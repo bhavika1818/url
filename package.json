@@ -1,0 +1,29 @@
+{
+  "name": "shortly",
+  "version": "1.0.0",
+  "description": "Shortly — Full-Stack URL Shortener & Click Analytics",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n \"backend,frontend\" -c \"blue,green\" \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "start": "node backend/src/server.js",
+    "build": "npm --prefix frontend install --include=dev && npm --prefix frontend run build",
+    "test": "npm run test --prefix backend",
+    "test:auth": "npm run test:auth --prefix backend",
+    "test:urls": "node --test tests/url-display.test.js",
+    "test:mongo": "npm run test:mongo --prefix backend",
+    "test:analytics": "npm run test:analytics --prefix backend",
+    "test:audit": "node --test tests/production-audit.test.js",
+    "verify:mongo": "npm run verify:mongo --prefix backend",
+    "migrate": "npm run migrate --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
