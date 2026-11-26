@@ -1,6 +1,6 @@
 import rateLimit from 'express-rate-limit';
 import { config } from '../config/env.js';
-
+// Rate limiting middleware for Express.js to prevent abuse and brute-force attacks
 const isTestEnv = () => process.env.NODE_ENV === 'test';
 
 // General API Rate Limiter
