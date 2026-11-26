@@ -176,7 +176,7 @@ export function LoginPage() {
 
           <div className="mt-6 pt-6 border-t border-slate-100 dark:border-white/[0.06] text-center">
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Don't have an account yet?{' '}
+              Don't have an account?{' '}
               <Link
                 to="/register"
                 className="font-bold text-brand-600 dark:text-brand-400 hover:text-brand-500 hover:underline"
