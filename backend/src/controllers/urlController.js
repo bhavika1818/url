@@ -1,5 +1,5 @@
 import { urlService } from '../services/urlService.js';
-
+// URL controller for handling short URL creation, retrieval, and management
 export const urlController = {
   async create(req, res, next) {
     try {
