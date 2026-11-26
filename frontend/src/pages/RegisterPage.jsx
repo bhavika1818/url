@@ -89,7 +89,7 @@ export function RegisterPage() {
         setErrorMessage(res.error || 'Failed to register account.');
       }
     } catch (err) {
-      setErrorMessage(err.message || 'An unexpected registration error occurred.');
+      setErrorMessage(err.message || 'An unexpected  error occurred.');
     } finally {
       setIsSubmitting(false);
     }
